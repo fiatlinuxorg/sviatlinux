@@ -18,7 +18,7 @@
 
 <div class="posts w-full flex justify-center">
   <NewPost />
-  <div class="w-1/3 flex flex-col gap-2 items-center">
+  <div class="w-full lg:w-1/3 flex flex-col gap-2 items-center">
     {#each posts.reverse() as post}
       <Post {post}></Post>
     {/each}

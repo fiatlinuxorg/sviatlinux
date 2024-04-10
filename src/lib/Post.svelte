@@ -41,7 +41,7 @@
   let user;
 </script>
 
-<Card class="min-w-full">
+<Card class="min-w-full min-h-96">
   <div class="user flex items-center gap-2">
     <Avatar src="https://i.pravatar.cc/300" />
     <div class="info flex justify-between items-center w-full">
