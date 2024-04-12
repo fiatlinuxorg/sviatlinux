@@ -39,7 +39,7 @@
 
 <div
   id="new-post"
-  class="container flex flex-col justify-center items-center gap-8 p-8 fixed top-0 lg:top-16 bg-white h-screen lg:h-2/3 rounded-lg shadow hidden"
+  class="container flex flex-col justify-center items-center gap-8 p-8 lg:top-16 bg-white h-2/3 rounded-lg shadow"
 >
   <h1>New post</h1>
   <form

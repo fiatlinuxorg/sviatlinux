@@ -1,5 +1,8 @@
 let token = localStorage.getItem("token") || null;
-
+/**
+ * 
+ * @returns Promise
+ */
 const getAllPosts = async () => {
     const response = await fetch("http://localhost:8000/api/posts", {
         method: "GET",
@@ -12,6 +15,14 @@ const getAllPosts = async () => {
     return data;
 };
 
+/**
+ * 
+ * @param {string} title 
+ * @param {*} content 
+ * @param {*} user_id 
+ * @param {*} image 
+ * @returns 
+ */
 const insertPost = async (title, content, user_id, image) => {
     const response = await fetch("http://localhost:8000/api/posts", {
         method: "POST",

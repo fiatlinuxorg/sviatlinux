@@ -13,30 +13,16 @@
 
   onMount(async () => {
     posts = await getAllPosts();
+    console.log(posts);
   });
 </script>
 
 <div class="posts w-full flex justify-center">
-  <NewPost />
   <div class="w-full lg:w-1/3 flex flex-col gap-2 items-center">
     {#each posts.reverse() as post}
       <Post {post}></Post>
     {/each}
   </div>
-</div>
-<!-- Add post button -->
-<div class="fixed bottom-4 right-4">
-  <Button
-    size="lg"
-    on:click={() => {
-      // Open the new post form
-      let form = document.querySelector("#new-post");
-      form.classList.toggle("hidden");
-    }}
-    class="bg-blue-950 text-white p-2 rounded-full flex items-center justify-center"
-  >
-    <CirclePlusSolid class="" />
-  </Button>
 </div>
 
 <style>
