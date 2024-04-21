@@ -2,6 +2,9 @@
   // IMPORTS
   import { Input, Label, Helper, Button, Fileupload } from "flowbite-svelte";
   import { insertPost } from "./posts";
+  import { CloseButton } from "flowbite-svelte";
+  import Posts from "./Posts.svelte";
+  import { currentPage } from "./currentPage";
 
   // FUNCTIONS
   let isImageValid = (image) => {
@@ -41,16 +44,35 @@
   id="new-post"
   class="container flex flex-col justify-center items-center gap-8 p-8 lg:top-16 bg-white h-2/3 rounded-lg shadow"
 >
+  <CloseButton
+    color="alternative"
+    class="absolute top-4 right-4 bg-white"
+    on:click={() => {
+      currentPage.set(Posts);
+    }}
+  />
   <h1>New post</h1>
   <form
     on:submit|preventDefault={() => {
       isTitleValid = title && title.length > 3;
       if (!isTitleValid && !isImageValid(image)) return;
-      console.log(image[0]);
-      imgToBase64(image[0]).then((base64) => {
-        console.log(base64);
-        insertPost(title, content, userID, base64);
-      });
+      if (image && isImageValid(image)) {
+        imgToBase64(image[0]).then((base64) => {
+          insertPost(title, content, userID, base64).then((response) => {
+            if (response.status === 201) {
+              currentPage.set(Posts);
+            }
+          });
+          // Render the new post
+        });
+      } else {
+        insertPost(title, content, userID, "").then((response) => {
+          if (response.status === 201) {
+            currentPage.set(Posts);
+          }
+        });
+        // Render the new post
+      }
     }}
   >
     <div>

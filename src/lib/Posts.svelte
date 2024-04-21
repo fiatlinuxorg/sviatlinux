@@ -1,15 +1,12 @@
 <script>
   // IMPORTS
   import Post from "./Post.svelte";
-  import NewPost from "./NewPost.svelte";
   import { getAllPosts } from "./posts.js";
   import { getAllUsers } from "./users.js";
   import { onMount } from "svelte";
-  import { Button } from "flowbite-svelte";
-  import { CirclePlusSolid } from "flowbite-svelte-icons";
   // VARIABLES
   let posts = [];
-  let isOpen = false;
+  let auth = JSON.parse(localStorage.getItem("user")) || {};
 
   onMount(async () => {
     posts = await getAllPosts();
@@ -20,7 +17,7 @@
 <div class="posts w-full flex justify-center">
   <div class="w-full lg:w-1/3 flex flex-col gap-2 items-center">
     {#each posts.reverse() as post}
-      <Post {post}></Post>
+      <Post {post} {auth}></Post>
     {/each}
   </div>
 </div>

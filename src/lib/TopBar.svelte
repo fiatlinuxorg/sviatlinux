@@ -35,6 +35,13 @@
     <NavUl>
       <NavLi href="/">Home</NavLi>
       <NavLi href="/">Frasi</NavLi>
+      <NavLi
+        href="/"
+        on:click={() => {
+          localStorage.clear();
+          location.reload();
+        }}>Logout</NavLi
+      >
     </NavUl>
   {/if}
 </Navbar>
