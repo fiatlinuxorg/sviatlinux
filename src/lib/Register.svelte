@@ -1,13 +1,13 @@
 <script>
   // IMPORTS
-  import { login } from "./auth.js";
+  import { register } from "./auth.js";
   import { Input, Label, Helper, Button } from "flowbite-svelte";
-  import { currentPage } from "./currentPage";
-  import Register from "./Register.svelte";
 
   // VARIABLES
+  let name;
   let email;
   let password;
+  let isNameValid = true;
   let isEmailValid = true;
   let isPasswordValid = true;
   let show = false;
@@ -18,18 +18,26 @@
 <div
   class="container flex flex-col justify-center w-full gap-8 p-8 lg:items-centerc lg:w-1/2"
 >
-  <h1>Login</h1>
+  <h1>Register</h1>
   <form
     on:submit|preventDefault={() => {
+      isNameValid = name && name.length > 5;
       isEmailValid = email && email.includes("@");
       isPasswordValid = password && password.length > 6;
       if (!isEmailValid || !isPasswordValid) return;
-      let error = login(email, password);
+      let error = register(name, email, password);
     }}
   >
     {#if error}
       <Helper type="error" color="red">{error}</Helper>
     {/if}
+    <div>
+      <Label for="name">Name</Label>
+      <Input id="name" bind:value={name} placeholder="Insert your name" />
+      {#if !isNameValid}
+        <Helper type="error" color="red">Name is invalid</Helper>
+      {/if}
+    </div>
     <div>
       <Label for="email">Email</Label>
       <Input
@@ -42,7 +50,6 @@
         <Helper type="error" color="red">Email is invalid</Helper>
       {/if}
     </div>
-
     <div>
       <Label for="password">Your password</Label>
       <Input
@@ -55,20 +62,8 @@
         <Helper type="error" color="red">Password is invalid</Helper>
       {/if}
     </div>
-    <Button type="submit">Login</Button>
+    <Button type="submit">Register</Button>
   </form>
-  <div class="flex">
-    <p
-      class="text-gray-500 text-sm"
-      on:click={() => {
-        currentPage.set(Register);
-      }}
-    >
-      Don't have an account? <span
-        class="registerbtn text-blue-500 cursor-pointer">Register here</span
-      >
-    </p>
-  </div>
 </div>
 
 <style>
@@ -77,9 +72,5 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-  }
-
-  .registerbtn {
-    text-decoration: underline;
   }
 </style>

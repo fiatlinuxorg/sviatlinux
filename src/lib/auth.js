@@ -5,7 +5,7 @@
  * @returns 
  */
 let login = async (email, password) => {
-    const response = await fetch("http://localhost:8000/api/auth/login", {
+    const response = await fetch("http://192.168.1.3:8000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,4 +25,21 @@ let login = async (email, password) => {
     }
   };
 
-export { login };
+let register = async (name, email, password) => {
+    const response = await fetch("http://192.168.1.3:8000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    if (response.ok) {
+      location.href = "/";
+    } else {
+        const error = "Invalid email or password";
+        return error;
+    }
+  }
+
+export { login, register };

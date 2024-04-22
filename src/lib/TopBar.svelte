@@ -8,6 +8,7 @@
     NavHamburger,
     Button,
   } from "flowbite-svelte";
+  import Profile from "./Profile.svelte";
 
   // VARIABLES
   let user = localStorage.getItem("user");
@@ -29,6 +30,12 @@
     <NavUl>
       <NavLi href="/">Home</NavLi>
       <NavLi href="/frasi">Frasi</NavLi>
+      <NavLi
+        on:click={() => {
+          currentPage.set(Profile);
+        }}
+        href="">Profile</NavLi
+      >
     </NavUl>
   {:else}
     <NavHamburger class="bg-transparent" />

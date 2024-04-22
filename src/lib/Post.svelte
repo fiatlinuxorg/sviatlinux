@@ -27,25 +27,25 @@
     let interval = seconds / 31536000;
 
     if (interval > 1) {
-      return Math.floor(interval) + " years" + " ago";
+      return Math.floor(interval) + "y" + " ago";
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return Math.floor(interval) + " months" + " ago";
+      return Math.floor(interval) + "m" + " ago";
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + " days" + " ago";
+      return Math.floor(interval) + "d" + " ago";
     }
     interval = seconds / 3600;
     if (interval > 1) {
-      return Math.floor(interval) + " hours" + " ago";
+      return Math.floor(interval) + "h" + " ago";
     }
     interval = seconds / 60;
     if (interval > 1) {
-      return Math.floor(interval) + " minutes" + " ago";
+      return Math.floor(interval) + "m" + " ago";
     }
-    return Math.floor(seconds) + " seconds" + " ago";
+    return Math.floor(seconds) + "s" + " ago";
   };
 
   // FIELDS
@@ -59,7 +59,7 @@
 </script>
 
 <Card
-  class="min-w-full relative flex flex-col justify-between min-h-[500px]"
+  class="min-w-full relative rounded-2xl flex flex-col justify-between min-h-[500px]"
   id={post.id}
 >
   <div>
@@ -80,9 +80,9 @@
     <div class="user flex items-center gap-2">
       {#if post.user.pfp != "default.jpg"}
         <Avatar
-          src={"http://localhost:8000/api/user_avatars/" + post.user.pfp}
+          src={"http://192.168.1.3:8000/api/user_avatars/" + post.user.pfp}
           alt={post.user.name}
-          class="cursor-pointer overflow-hidden h-10 w-10"
+          class="cursor-pointer overflow-hidden h-10 min-w-10"
           on:click={() => {
             console.log("clicked");
           }}
@@ -96,37 +96,41 @@
           }}
         />
       {/if}
-      <div class="info flex justify-between items-center w-full">
-        <h2>{post.user.name}</h2>
-        <p class="text-sm">{diffForHumans(post.created_at)}</p>
+      <div class="info flex justify-between flex-col w-full">
+        <h2 class="text-gray-900 text-md">{post.user.name}</h2>
+        <p class="text-sm font-semibold text-gray-400">
+          {diffForHumans(post.created_at)}
+        </p>
       </div>
     </div>
     <div class="content mt-2">
-      <h2 class="title">{post.title}</h2>
+      <h2 class="title text-gray-900">{post.title}</h2>
       {#if post.image}
         <img
-          src={"http://localhost:8000/api/post_images/" + post.image}
+          src={"http://192.168.1.3:8000/api/post_images/" + post.image}
           alt={""}
           class="w-full object-cover rounded-lg mt-2"
         />
       {/if}
       {#if post.content}
-        <p class="text-md">{@html parseContent(post.content)}</p>
+        <p class="text-md text-gray-700">{@html parseContent(post.content)}</p>
       {/if}
     </div>
   </div>
   <div class="footer actions mt-2">
+    <!-- TODO 
     <div class="mb-2">
       <Button size="sm" color="light" class="me-2 text-xl p-1">🖕</Button>
       <Button size="sm" color="light" class="text-xl p-1">💀</Button>
     </div>
+    -->
     <div class="comment-section flex flex-col">
       <div class="flex items-center gap-2">
         {#if auth.pfp != "default.jpg"}
           <Avatar
-            src={"http://localhost:8000/api/user_avatars/" + auth.pfp}
+            src={"http://192.168.1.3:8000/api/user_avatars/" + auth.pfp}
             alt={auth.name}
-            class="cursor-pointer overflow-hidden h-10 w-10"
+            class="cursor-pointer overflow-hidden h-10 min-w-10"
             on:click={() => {}}
           />
         {:else}

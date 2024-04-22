@@ -37,12 +37,12 @@
 </script>
 
 <TopBar />
-<main id="main" class="h-full p-4">
+<main id="main" class="h-full p-2 relative">
   <svelte:component this={page} />
+  {#if isMobile && token}
+    <BottomBar />
+  {/if}
 </main>
-{#if isMobile && page != Login}
-  <BottomBar />
-{/if}
 
 <style>
 </style>
