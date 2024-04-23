@@ -5,11 +5,11 @@
  * @returns 
  */
 let login = async (email, password) => {
-  fetch("https://backend.fiatlinux.it/sanctum/csrf-cookie").then(response => {
+  fetch("https://backend.fiatlinux.it/sanctum/csrf-cookie").then( async response => {
     // set csrf token
     const csrfToken = response.headers.get("X-CSRF-TOKEN");
     localStorage.setItem("csrfToken", csrfToken);
-    fetch("https://backend.fiatlinux.it/api/auth/login", {
+    const uresponse = await fetch("https://backend.fiatlinux.it/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,8 +18,8 @@ let login = async (email, password) => {
       body: JSON.stringify({ email, password }),
     });
 
-    if (response.ok) {
-      const user = await response.json();
+    if (uresponse.ok) {
+      const user = await uresponse.json();
       console.log(user);
       localStorage.setItem("user", JSON.stringify(user.user));
       localStorage.setItem("token", user.token);
