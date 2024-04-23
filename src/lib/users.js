@@ -1,7 +1,7 @@
 let token = localStorage.getItem("token") || null;
 
 const getAllUsers = async () => {
-    const response = await fetch("http://192.168.1.3:8000/api/users", {
+    const response = await fetch("https://fiatlinux.it/api/users", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

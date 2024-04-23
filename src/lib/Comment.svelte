@@ -11,7 +11,7 @@
     <div class="user flex items-center gap-2">
       {#if comment.user.pfp != "default.jpg"}
         <Avatar
-          src={"http://192.168.1.3:8000/api/user_avatars/" + comment.user.pfp}
+          src={"https://fiatlinux.it/api/user_avatars/" + comment.user.pfp}
           alt={comment.user.name}
           class="cursor-pointer overflow-hidden h-10 min-w-10"
           on:click={() => {

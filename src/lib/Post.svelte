@@ -80,7 +80,7 @@
     <div class="user flex items-center gap-2">
       {#if post.user.pfp != "default.jpg"}
         <Avatar
-          src={"http://192.168.1.3:8000/api/user_avatars/" + post.user.pfp}
+          src={"https://fiatlinux.it/api/user_avatars/" + post.user.pfp}
           alt={post.user.name}
           class="cursor-pointer overflow-hidden h-10 min-w-10 lg:min-w-12 lg:h-12"
           on:click={() => {
@@ -107,7 +107,7 @@
       <h2 class="title text-fl_gray">{post.title}</h2>
       {#if post.image}
         <img
-          src={"http://192.168.1.3:8000/api/post_images/" + post.image}
+          src={"https://fiatlinux.it/api/post_images/" + post.image}
           alt={""}
           class="w-full object-cover rounded-lg mt-2"
         />
@@ -130,7 +130,7 @@
       <div class="flex items-center gap-2">
         {#if auth.pfp != "default.jpg"}
           <Avatar
-            src={"http://192.168.1.3:8000/api/user_avatars/" + auth.pfp}
+            src={"https://fiatlinux.it/api/user_avatars/" + auth.pfp}
             alt={auth.name}
             class="cursor-pointer overflow-hidden h-10 min-w-10"
             on:click={() => {}}

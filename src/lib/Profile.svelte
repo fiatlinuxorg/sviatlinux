@@ -49,7 +49,7 @@
       class="profile-image absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <img
-        src="http://192.168.1.3:8000/api/user_avatars/godo.jpg"
+        src="https://fiatlinux.it/api/user_avatars/godo.jpg"
         alt="profile"
         class="w-20 h-20 rounded-full"
       />

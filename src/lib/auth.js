@@ -5,7 +5,7 @@
  * @returns 
  */
 let login = async (email, password) => {
-    const response = await fetch("http://192.168.1.3:8000/api/auth/login", {
+    const response = await fetch("https://fiatlinux.it/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ let login = async (email, password) => {
   };
 
 let register = async (name, email, password) => {
-    const response = await fetch("http://192.168.1.3:8000/api/auth/register", {
+    const response = await fetch("https://fiatlinux.it/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ let register = async (name, email, password) => {
   }
 
 let logout = async () => {
-    const response = await fetch("http://192.168.1.3:8000/api/auth/logout", {
+    const response = await fetch("https://fiatlinux.it/api/auth/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ let logout = async () => {
   }
 
 let update = async (name, email, password) => {
-    const response = await fetch("http://192.168.1.3:8000/api/auth/update", {
+    const response = await fetch("https://fiatlinux.it/api/auth/update", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
