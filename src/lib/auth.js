@@ -5,10 +5,12 @@
  * @returns 
  */
 let login = async (email, password) => {
+  fetch("https://backend.fiatlinux.it/sanctum/csrf-cookie").then(async () => {
     const response = await fetch("https://backend.fiatlinux.it/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        _csrf: "csrfToken",
       },
       body: JSON.stringify({ email, password }),
     });
@@ -23,7 +25,8 @@ let login = async (email, password) => {
         const error = "Invalid email or password";
         return error;
     }
-  };
+  });
+};
 
 let register = async (name, email, password) => {
     const response = await fetch("https://backend.fiatlinux.it/api/auth/register", {
