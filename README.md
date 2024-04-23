@@ -1,4 +1,4 @@
-<img src="https://fiatlinux.it/banner/25" />
+<img src="https://backend.fiatlinux.it/banner/25" />
 
 # Sviatlinux v0.2
 

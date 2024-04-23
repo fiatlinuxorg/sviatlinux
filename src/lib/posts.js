@@ -4,7 +4,7 @@ let token = localStorage.getItem("token");
  * @returns Promise
  */
 const getAllPosts = async () => {
-    const response = await fetch("https://fiatlinux.it/api/posts", {
+    const response = await fetch("https://backend.fiatlinux.it/api/posts", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const getAllPosts = async () => {
  * @returns 
  */
 const insertPost = async (title, content, user_id, image) => {
-    const response = await fetch("https://fiatlinux.it/api/posts", {
+    const response = await fetch("https://backend.fiatlinux.it/api/posts", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const insertPost = async (title, content, user_id, image) => {
 }
 
 const deletePost = async (id) => {
-    const response = await fetch(`https://fiatlinux.it/api/posts/${id}`, {
+    const response = await fetch(`https://backend.fiatlinux.it/api/posts/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const parseContent = (content) => {
 }
 
 const getComments = async (id) => {
-    const response = await fetch(`https://fiatlinux.it/api/posts/${id}/comments`, {
+    const response = await fetch(`https://backend.fiatlinux.it/api/posts/${id}/comments`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const getComments = async (id) => {
 
 const insertComment = async (content, user_id, post_id) => {
     console.log(content, user_id, post_id);
-    const response = await fetch("https://fiatlinux.it/api/comments", {
+    const response = await fetch("https://backend.fiatlinux.it/api/comments", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
