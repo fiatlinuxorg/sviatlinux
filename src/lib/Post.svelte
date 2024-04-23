@@ -82,7 +82,7 @@
         <Avatar
           src={"http://192.168.1.3:8000/api/user_avatars/" + post.user.pfp}
           alt={post.user.name}
-          class="cursor-pointer overflow-hidden h-10 min-w-10"
+          class="cursor-pointer overflow-hidden h-10 min-w-10 lg:min-w-12 lg:h-12"
           on:click={() => {
             console.log("clicked");
           }}
@@ -97,14 +97,14 @@
         />
       {/if}
       <div class="info flex justify-between flex-col w-full">
-        <h2 class="text-gray-900 text-md">{post.user.name}</h2>
-        <p class="text-sm font-semibold text-gray-400">
+        <h2 class="text-fl_gray text-md lg:text-xl">{post.user.name}</h2>
+        <p class="text-sm font-semibold text-gray-400 lg:text-md">
           {diffForHumans(post.created_at)}
         </p>
       </div>
     </div>
     <div class="content mt-2">
-      <h2 class="title text-gray-900">{post.title}</h2>
+      <h2 class="title text-fl_gray">{post.title}</h2>
       {#if post.image}
         <img
           src={"http://192.168.1.3:8000/api/post_images/" + post.image}
@@ -113,7 +113,9 @@
         />
       {/if}
       {#if post.content}
-        <p class="text-md text-gray-700">{@html parseContent(post.content)}</p>
+        <p class="text-md text-gray-700 lg:text-lg">
+          {@html parseContent(post.content)}
+        </p>
       {/if}
     </div>
   </div>
@@ -149,7 +151,7 @@
         <Button
           size="sm"
           color="alternative"
-          class="text-md p-2"
+          class="text-md p-2  bg-fl_red"
           on:click={(element) => {
             insertComment(content, auth.id, post.id).then((response) => {
               if (response.status === 201) {

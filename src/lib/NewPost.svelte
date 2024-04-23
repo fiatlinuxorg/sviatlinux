@@ -51,7 +51,7 @@
       currentPage.set(Posts);
     }}
   />
-  <h1>New post</h1>
+  <h1 class="text-fl_gray">New post</h1>
   <form
     on:submit|preventDefault={() => {
       isTitleValid = title && title.length > 3;

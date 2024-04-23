@@ -15,55 +15,57 @@
   //!localStorage.getItem("user")
 </script>
 
-<div
-  class="container flex flex-col justify-center w-full gap-8 p-8 lg:items-centerc lg:w-1/2"
->
-  <h1>Register</h1>
-  <form
-    on:submit|preventDefault={() => {
-      isNameValid = name && name.length > 5;
-      isEmailValid = email && email.includes("@");
-      isPasswordValid = password && password.length > 6;
-      if (!isEmailValid || !isPasswordValid) return;
-      let error = register(name, email, password);
-    }}
+<div class="flex w-full items-center justify-center h-full">
+  <div
+    class="container flex flex-col justify-center w-full gap-8 p-8 lg:items-centerc lg:w-1/2"
   >
-    {#if error}
-      <Helper type="error" color="red">{error}</Helper>
-    {/if}
-    <div>
-      <Label for="name">Name</Label>
-      <Input id="name" bind:value={name} placeholder="Insert your name" />
-      {#if !isNameValid}
-        <Helper type="error" color="red">Name is invalid</Helper>
+    <h1 class="text-fl_gray">Register</h1>
+    <form
+      on:submit|preventDefault={() => {
+        isNameValid = name && name.length > 5;
+        isEmailValid = email && email.includes("@");
+        isPasswordValid = password && password.length > 6;
+        if (!isEmailValid || !isPasswordValid) return;
+        let error = register(name, email, password);
+      }}
+    >
+      {#if error}
+        <Helper type="error" color="red">{error}</Helper>
       {/if}
-    </div>
-    <div>
-      <Label for="email">Email</Label>
-      <Input
-        id="email"
-        type="email"
-        bind:value={email}
-        placeholder="Insert your email"
-      />
-      {#if !isEmailValid}
-        <Helper type="error" color="red">Email is invalid</Helper>
-      {/if}
-    </div>
-    <div>
-      <Label for="password">Your password</Label>
-      <Input
-        id="password"
-        bind:value={password}
-        type={show ? "text" : "password"}
-        placeholder="Insert your password"
-      />
-      {#if !isPasswordValid}
-        <Helper type="error" color="red">Password is invalid</Helper>
-      {/if}
-    </div>
-    <Button type="submit">Register</Button>
-  </form>
+      <div>
+        <Label for="name">Name</Label>
+        <Input id="name" bind:value={name} placeholder="Insert your name" />
+        {#if !isNameValid}
+          <Helper type="error" color="red">Name is invalid</Helper>
+        {/if}
+      </div>
+      <div>
+        <Label for="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          bind:value={email}
+          placeholder="Insert your email"
+        />
+        {#if !isEmailValid}
+          <Helper type="error" color="red">Email is invalid</Helper>
+        {/if}
+      </div>
+      <div>
+        <Label for="password">Your password</Label>
+        <Input
+          id="password"
+          bind:value={password}
+          type={show ? "text" : "password"}
+          placeholder="Insert your password"
+        />
+        {#if !isPasswordValid}
+          <Helper type="error" color="red">Password is invalid</Helper>
+        {/if}
+      </div>
+      <Button type="submit" class="bg-fl_orange">Register</Button>
+    </form>
+  </div>
 </div>
 
 <style>

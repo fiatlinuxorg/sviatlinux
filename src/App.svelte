@@ -36,13 +36,18 @@
   });
 </script>
 
-<TopBar />
-<main id="main" class="h-full p-2 relative">
-  <svelte:component this={page} />
-  {#if isMobile && token}
-    <BottomBar />
-  {/if}
-</main>
+<div class="min-h-screen">
+  <TopBar />
+  <main id="main" class="h-full p-2 relative">
+    <svelte:component this={page} />
+    {#if token}
+      <BottomBar />
+    {/if}
+  </main>
+</div>
 
 <style>
+  #main {
+    height: calc(100vh - 5rem);
+  }
 </style>

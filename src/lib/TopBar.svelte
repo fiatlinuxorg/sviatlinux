@@ -8,7 +8,6 @@
     NavHamburger,
     Button,
   } from "flowbite-svelte";
-  import Profile from "./Profile.svelte";
 
   // VARIABLES
   let user = localStorage.getItem("user");
@@ -24,7 +23,10 @@
   </NavBrand>
   {#if !user}
     <div class="flex md:order-2">
-      <Button size="md" class="px-2">Login</Button>
+      {#if window.innerWidth > 768}
+        <Button size="md" class="px-2 me-3" color="light">Register</Button>
+        <Button size="md" class="px-2 me-3 bg-fl_orange">Login</Button>
+      {/if}
       <NavHamburger class="bg-transparent" />
     </div>
     <NavUl>
@@ -42,13 +44,6 @@
     <NavUl>
       <NavLi href="/">Home</NavLi>
       <NavLi href="/">Frasi</NavLi>
-      <NavLi
-        href="/"
-        on:click={() => {
-          localStorage.clear();
-          location.reload();
-        }}>Logout</NavLi
-      >
     </NavUl>
   {/if}
 </Navbar>

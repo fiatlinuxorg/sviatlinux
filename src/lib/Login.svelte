@@ -15,59 +15,59 @@
   //!localStorage.getItem("user")
 </script>
 
-<div
-  class="container flex flex-col justify-center w-full gap-8 p-8 lg:items-centerc lg:w-1/2"
->
-  <h1>Login</h1>
-  <form
-    on:submit|preventDefault={() => {
-      isEmailValid = email && email.includes("@");
-      isPasswordValid = password && password.length > 6;
-      if (!isEmailValid || !isPasswordValid) return;
-      let error = login(email, password);
-    }}
-  >
-    {#if error}
-      <Helper type="error" color="red">{error}</Helper>
-    {/if}
-    <div>
-      <Label for="email">Email</Label>
-      <Input
-        id="email"
-        type="email"
-        bind:value={email}
-        placeholder="Insert your email"
-      />
-      {#if !isEmailValid}
-        <Helper type="error" color="red">Email is invalid</Helper>
-      {/if}
-    </div>
-
-    <div>
-      <Label for="password">Your password</Label>
-      <Input
-        id="password"
-        bind:value={password}
-        type={show ? "text" : "password"}
-        placeholder="Insert your password"
-      />
-      {#if !isPasswordValid}
-        <Helper type="error" color="red">Password is invalid</Helper>
-      {/if}
-    </div>
-    <Button type="submit">Login</Button>
-  </form>
-  <div class="flex">
-    <p
-      class="text-gray-500 text-sm"
-      on:click={() => {
-        currentPage.set(Register);
+<div class="flex w-full items-center justify-center h-full">
+  <div class="flex flex-col justify-center w-full gap-8 p-8 lg:w-1/2">
+    <h1 class="text-fl_gray">Login</h1>
+    <form
+      on:submit|preventDefault={() => {
+        isEmailValid = email && email.includes("@");
+        isPasswordValid = password && password.length > 6;
+        if (!isEmailValid || !isPasswordValid) return;
+        let error = login(email, password);
       }}
     >
-      Don't have an account? <span
-        class="registerbtn text-blue-500 cursor-pointer">Register here</span
+      {#if error}
+        <Helper type="error" color="red">{error}</Helper>
+      {/if}
+      <div>
+        <Label for="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          bind:value={email}
+          placeholder="Insert your email"
+        />
+        {#if !isEmailValid}
+          <Helper type="error" color="red">Email is invalid</Helper>
+        {/if}
+      </div>
+
+      <div>
+        <Label for="password">Your password</Label>
+        <Input
+          id="password"
+          bind:value={password}
+          type={show ? "text" : "password"}
+          placeholder="Insert your password"
+        />
+        {#if !isPasswordValid}
+          <Helper type="error" color="red">Password is invalid</Helper>
+        {/if}
+      </div>
+      <Button type="submit" class="bg-fl_orange">Login</Button>
+    </form>
+    <div class="flex">
+      <p
+        class="text-gray-500 text-sm"
+        on:click={() => {
+          currentPage.set(Register);
+        }}
       >
-    </p>
+        Don't have an account? <span
+          class="registerbtn text-blue-500 cursor-pointer">Register here</span
+        >
+      </p>
+    </div>
   </div>
 </div>
 

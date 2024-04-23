@@ -42,4 +42,25 @@ let register = async (name, email, password) => {
     }
   }
 
-export { login, register };
+let logout = async () => {
+    const response = await fetch("http://192.168.1.3:8000/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+    });
+  }
+
+let update = async (name, email, password) => {
+    const response = await fetch("http://192.168.1.3:8000/api/auth/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify({ name, email }),
+    });
+  }
+
+export { login, register, logout, update };

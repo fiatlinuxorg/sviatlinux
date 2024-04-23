@@ -15,10 +15,10 @@
 </script>
 
 <div
-  class="bottomnav fixed bottom-0 left-0 w-full px-2 py-4 flex items-center gap-2"
+  class="bottomnav fixed bottom-0 left-0 w-full px-2 py-4 flex items-center gap-2 lg:h-1/2 lg:w-auto lg:flex-col lg:bottom-1/4"
 >
   <div
-    class="app-navigator flex w-full h-full justify-between bg-white rounded-full"
+    class="app-navigator flex w-full h-full justify-between bg-white rounded-full lg:flex-col"
   >
     <Button
       size="xl"
@@ -61,11 +61,11 @@
       <CogSolid class="w-6 h-6" color="black" />
     </Button>
   </div>
-  <div class="add-post bg-blue-950 rounded-full">
+  <div class="add-post bg-fl_gray rounded-full">
     <Button
       size="xl"
       color="alternative"
-      class="new-post p-4 bg-transparent border-0 flex items-center justify-center rounded-full"
+      class="new-post p-4 bg-transparent border-0 flex items-center justify-center rounded-full hover:bg-black transition-all duration-300 ease-in-out"
       on:click={() => {
         currentPage.set(NewPost);
       }}
