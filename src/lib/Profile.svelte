@@ -4,7 +4,7 @@
   import { onMount } from "svelte";
   import Login from "./Login.svelte";
   import { Input, Button, Alert, Fileupload } from "flowbite-svelte";
-  import { logout } from "./auth";
+  import { logout, update } from "./auth";
 
   // FUNCTIONS
   let isImageValid = (image) => {
@@ -49,7 +49,7 @@
       class="profile-image absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
       <img
-        src="https://backend.fiatlinux.it/api/user_avatars/godo.jpg"
+        src={"https://backend.fiatlinux.it/api/user_avatars/" + user.pfp}
         alt="profile"
         class="w-20 h-20 rounded-full"
       />
@@ -78,8 +78,8 @@
       </div>
       <div class="flex items-center justify-center">
         <Fileupload
-          on:fileupload={(e) => {
-            image = e.detail.files;
+          on:change={(e) => {
+            image = e.target.files;
           }}
         >
           <Button size="sm" class="bg-fl_orange">Upload</Button>
@@ -98,9 +98,11 @@
             return;
           }
           alert = 0;
-          user.name = name;
-          user.email = email;
-          localStorage.setItem("user", JSON.stringify(user));
+          imgToBase64(image[0]).then((img) => {
+            update(name, email, img).then((response) => {
+              console.log(response);
+            });
+          });
         }}
       >
         Save
@@ -110,8 +112,7 @@
         class="mt-2 ms-2 bg-fl_red"
         on:click={() => {
           logout().then((response) => {
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
+            localStorage.clear();
             currentPage.set(Login);
           });
         }}

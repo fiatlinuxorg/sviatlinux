@@ -6,6 +6,8 @@
   import Posts from "./Posts.svelte";
   import { currentPage } from "./currentPage";
 
+  import { slide } from "svelte/transition";
+
   // FUNCTIONS
   let isImageValid = (image) => {
     const validTypes = [
@@ -36,24 +38,22 @@
   let image;
   let isTitleValid = true;
   let isContentValid = true;
+  let loading = false;
   let content;
   let title;
 </script>
 
 <div
   id="new-post"
-  class="container flex flex-col justify-center items-center gap-8 p-8 lg:top-16 bg-white h-2/3 rounded-lg shadow"
+  class="flex-col flex w-full items-center justify-center h-full relative"
+  in:slide={{ duration: 500, axis: "y" }}
+  out:slide={{ duration: 500, axis: "y" }}
 >
-  <CloseButton
-    color="alternative"
-    class="absolute top-4 right-4 bg-white"
-    on:click={() => {
-      currentPage.set(Posts);
-    }}
-  />
-  <h1 class="text-fl_gray">New post</h1>
   <form
+    class="w-full lg:w-1/3 relative"
     on:submit|preventDefault={() => {
+      if (loading) return;
+      loading = true;
       isTitleValid = title && title.length > 3;
       if (!isTitleValid && !isImageValid(image)) return;
       if (image && isImageValid(image)) {
@@ -63,7 +63,6 @@
               currentPage.set(Posts);
             }
           });
-          // Render the new post
         });
       } else {
         insertPost(title, content, userID, "").then((response) => {
@@ -71,10 +70,17 @@
             currentPage.set(Posts);
           }
         });
-        // Render the new post
       }
     }}
   >
+    <h1 class="text-fl_gray">New post</h1>
+    <CloseButton
+      color="alternative"
+      class="absolute top-0 right-0 bg-white"
+      on:click={() => {
+        currentPage.set(Posts);
+      }}
+    />
     <div>
       <Label for="title">Title</Label>
       <Input

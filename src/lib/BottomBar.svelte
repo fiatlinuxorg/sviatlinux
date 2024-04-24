@@ -12,6 +12,7 @@
     SearchOutline,
     CirclePlusOutline,
   } from "flowbite-svelte-icons";
+  import Frasi from "./Frasi.svelte";
 </script>
 
 <div

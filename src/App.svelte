@@ -8,14 +8,19 @@
   import { onMount } from "svelte";
 
   // VARIABLES
-  let token = localStorage.getItem("token");
-  let user = JSON.parse(localStorage.getItem("user"));
+  let token = localStorage.getItem("token") || null;
+  let user;
+  try {
+    user = JSON.parse(localStorage.getItem("user"));
+  } catch (error) {
+    user = null;
+  }
   let isMobile = window.innerWidth < 768;
 
-  let page;
+  console.log(token);
 
+  let page;
   onMount(() => {
-    console.log(token);
     if (!token) {
       page = Login;
     } else {

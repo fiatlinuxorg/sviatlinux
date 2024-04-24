@@ -63,7 +63,7 @@
   id={post.id}
 >
   <div>
-    {#if post.user.id == auth.id}
+    {#if post.user.id == auth.id || auth.role == "admin"}
       <Button
         size="xl"
         color="alternative"

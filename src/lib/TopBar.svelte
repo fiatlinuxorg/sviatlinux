@@ -9,6 +9,10 @@
     Button,
   } from "flowbite-svelte";
 
+  import Posts from "./Posts.svelte";
+  import Frasi from "./Frasi.svelte";
+  import { currentPage } from "./currentPage";
+
   // VARIABLES
   let user = localStorage.getItem("user");
 </script>
@@ -31,19 +35,24 @@
     </div>
     <NavUl>
       <NavLi href="/">Home</NavLi>
-      <NavLi href="/frasi">Frasi</NavLi>
-      <NavLi
-        on:click={() => {
-          currentPage.set(Profile);
-        }}
-        href="">Profile</NavLi
-      >
+      <NavLi href="/">Frasi</NavLi>
+      <NavLi href="/">Profile</NavLi>
     </NavUl>
   {:else}
     <NavHamburger class="bg-transparent" />
     <NavUl>
-      <NavLi href="/">Home</NavLi>
-      <NavLi href="/">Frasi</NavLi>
+      <NavLi
+        on:click={() => {
+          currentPage.set(Posts);
+        }}
+        href="">Home</NavLi
+      >
+      <NavLi
+        on:click={() => {
+          currentPage.set(Frasi);
+        }}
+        href="">Frasi</NavLi
+      >
     </NavUl>
   {/if}
 </Navbar>

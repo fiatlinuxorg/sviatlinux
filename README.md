@@ -1,6 +1,4 @@
-<img src="https://backend.fiatlinux.it/banner/25" />
-
-# Sviatlinux v0.2
+# Sviatlinux v0.4
 
 Sviatlinux is a modern social media web application built with Svelte.js as the frontend framework. It aims to provide users with a seamless and engaging platform for connecting, sharing, and interacting with each other.
 
