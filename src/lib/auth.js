@@ -18,7 +18,6 @@ const login = async (email, password) => {
       });
   
       if (uresponse.ok) {
-        console.log(uresponse);
         if(uresponse.status == 200) {
           const user = await uresponse.json();
           if(user.user.id == 1) {
@@ -26,7 +25,6 @@ const login = async (email, password) => {
           }
           localStorage.setItem("user", JSON.stringify(user.user));
           localStorage.setItem("token", user.token);
-          console.log(user.user, user.token)
           location.href = "/";
         } else {
           return "Invalid email or password";

@@ -16,7 +16,7 @@
         <Link to="/">Home</Link>
       </div>
       <a href="#about">About</a>
-      <Link to="/contact">Contacts</Link>
+      <Link to="/frasi">Frasi</Link>
     </nav>
     <div class="login-btn">
       <Link to="/login">Login</Link>

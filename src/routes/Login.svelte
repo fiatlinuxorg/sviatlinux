@@ -2,6 +2,7 @@
     import Input from "../components/Input.svelte";
     import logo from "/fiatlinux-red.svg"
     import { login } from "../lib/auth.js"
+    import { validate } from "../lib/validation.js"
 
     let email;
     let password;
@@ -12,7 +13,9 @@
     <img src={logo} alt="">
     <h1>Log in or sign up</h1>
     <form on:submit|preventDefault={() => {
-        console.log(email, password)
+        if(validate(email, "email") && validate(password, "password")) {
+            login(email, password);
+        }
     }}>
         <!--
             <div>
@@ -22,11 +25,12 @@
         -->
         <div>
             <label for="email">Email</label>
-            <Input name="email" placeholder="john.doe@fiatlnux.it" bind:value={email}></Input>
+            <Input id="email" name="email" placeholder="john.doe@fiatlnux.it" bind:value={email} required></Input>
         </div>
         <div>
             <label for="password">Password</label>
-            <Input name="password" placeholder="************" bind:value={password}></Input>
+            <Input id="password" name="password" placeholder="************" bind:value={password} required autocomplete="off"></Input>
+            <p>Password must be at least 8 characters, must contain an uppercase letter, number and special char</p>
         </div>
         <button>Continue</button>
     </form>
@@ -38,6 +42,9 @@
         width: 71px;
     }
 
+    p {
+        font-size: 10px;
+    }
     main {
         width: 100%;
         height: 100vh;
